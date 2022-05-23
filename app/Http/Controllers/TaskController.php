@@ -93,9 +93,21 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update($id)
     {
-        //
+        if($id){
+            $task=Task::find($id);
+
+            if(request()->type==1){
+                $task->start_time=now();
+            }
+            elseif(request()->type==0){
+                $task->end_time=now();
+            }
+            $task->save();
+            
+        }
+        return redirect()->back();
     }
 
     /**

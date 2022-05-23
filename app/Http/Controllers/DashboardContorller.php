@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -93,7 +94,10 @@ class DashboardContorller extends Controller
 
         $tasks=$tasks->get();
         $tasks->transform(function($t){
-            $time_duration=(($t->end_time)?($t->end_time):0)-(($t->start_time)?($t->start_time):0);
+            $start_time=Carbon::createFromFormat('Y-m-d H:s:i', $t->start_time);
+            $end_time=Carbon::createFromFormat('Y-m-d H:s:i', $t->end_time);
+            $time_duration=$end_time->diffInHours($start_time);
+
             $payment=$time_duration*$t->hrate;
 
             return[

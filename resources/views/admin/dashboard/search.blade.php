@@ -12,7 +12,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputState">Assign Project</label>
                     <select id="project" name="project" class="form-control">
-                      <option selected>Choose...</option>
+                      <option value="" selected>Choose...</option>
                       @foreach ($projects as $project)
 
                       <option value="{{$project->id}}">{{$project->name}}</option>
@@ -24,7 +24,7 @@
                 <div class="form-group col-md-4">
                     <label for="inputState">Assign user</label>
                     <select id="user" name="user" class="form-control">
-                      <option selected>Choose...</option>
+                      <option value="" selected>Choose...</option>
                       @foreach ($users as $user)
 
                       <option value="{{$user->id}}">{{$user->name}}</option>
